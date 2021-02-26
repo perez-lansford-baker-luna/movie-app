@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 
 const apiUrl = "https://utopian-absorbing-network.glitch.me/movies";
 
@@ -31,7 +31,23 @@ const deleteMovie = id => fetch(`${apiUrl}/${id}`,{
 //
 
 //
-const editMovie = movie => fetch(`${apiUrl}/${movie.title}`, {
+// const editMovie = movie => fetch(`${apiUrl}/${movie.title}`, {
+//     method: "PUT",
+//     headers: {
+//         "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(movie)
+// })
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(`Edited ${JSON.stringify(data)}`)
+//         return data[2].title;
+//     })
+//     .catch(console.error);
+//
+// console.log(editMovie(2));
+
+const editMovie = (movie, id) => fetch(`${apiUrl}/${id}`, {
     method: "PUT",
     headers: {
         "Content-Type": "application/json",
@@ -40,12 +56,16 @@ const editMovie = movie => fetch(`${apiUrl}/${movie.title}`, {
 })
     .then(response => response.json())
     .then(data => {
-        console.log(`Edited ${JSON.stringify(data)}`)
-        return data[2].title;
+        console.log(data + "something")
+        // return data[0];
     })
     .catch(console.error);
 
-console.log(editMovie(2));
+// console.log(editMovie({movie: 1,
+//     title: "something",
+//     rating: 5}));
+
+
 
 const addMovie = movie => fetch(`${apiUrl}`,{
     method: 'POST',
