@@ -1,0 +1,27 @@
+body {
+    background-color: #222121;
+}
+.navbar-expand-lg {
+    background-color: #202020;
+}
+.navbar-light {
+    background-color: #2b2929;
+}
+#button {
+    background-color: #222121;
+    border-color: ghostwhite;
+    color: white;
+}
+#type-in {
+    background-color: #222121;
+}
+#nav-color {
+    color: white;
+}
+#current {
+    color: white;
+}
+
+.nav {
+    background: rgba(27,67,109);
+}
