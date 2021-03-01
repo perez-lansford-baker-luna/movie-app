@@ -10,11 +10,18 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 
+
 </head>
 <body>
+<!-- loading screen -->
+<div class="loader">
+    <img src="img/SciFi_LoaderBlue.gif" alt="loading....">
+</div>
+
+
 <!-- the navbar -->
-<nav class="navbar navbar-expand-lg navB">
-    <a class="navbar-brand" href="#">Marvel-ous</a>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">MCU</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -38,7 +45,6 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,12 +54,33 @@
 </nav>
 
 <!-- container for the movie display -->
-<div id="movie-container" class="row m-4"></div>
-
+<div class="jumbotron jumbotron-fluid">
+        <div id="movie-container" class="row"></div>
+</div>
 <!-- adding movie form -->
-
-
-
+<div class="form-container d-none d-md-flex">
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Movie Name</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Movie Name">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Rating</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Movie Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <a href="#" class="btn btn-light m-4">ADD MOVIE</a>
+    </form>
+</div>
 
 
 
