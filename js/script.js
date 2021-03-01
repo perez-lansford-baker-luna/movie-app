@@ -1,41 +1,45 @@
 "use strict";
 
 const apiUrl = "https://utopian-absorbing-network.glitch.me/movies";
+
 const movieContainer = $("#movie-container");
-const editButton = $(".editButton");
-const deleteButton = $(".deleteButton");
+const loader = $(".loader");
 
 
 
 // ======= Fetching movies =======
-    const getMovies = () => fetch(apiUrl)
+    //const getMovies = () =>
+	fetch(apiUrl)
         .then(response => response.json())
+		.then(movies => {
+			$(loader).hide()
+			$(movieContainer).append(displayMovies(movies))
+		})
         .catch(console.error);
 
-     getMovies()
-		 .then(movies => {
-		 	$(movieContainer).append(displayMovies(movies))
-		 });
+     //getMovies()
+
 
 // ======= Functions for Displaying Data =======
 
 	function displayMovie(movie) {
-		return `<div class="card m-4" style="width: 18rem;">
+		return `<div class="card m-4 d-none d-md-flex" style="width: 18rem;">
                     <div class="card-body text-center">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">Rating: ${movie.rating}</p>
-                        <a href="#" class="btn btn-primary editButton">Edit</a>
-                        <a href="#" class="btn btn-primary deleteButton">Delete</a>
+                        <a href="#" class="btn btn-dark m-4">Edit</a>
+                        <a href="#" class="btn btn-dark m-4">Delete</a>
                     </div>
 				</div>`
 	}
+
+
 
 	function displayMovies(movies) {
 		return movies.reduce((acc, curr) => {
 			return acc.concat(displayMovie(curr))
 		}, '')
 	}
-
 
 
 // 	======= Getting Movie Id =======
