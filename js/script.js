@@ -33,8 +33,7 @@ const getMovies = () => {
         .then(response => response.json())
         .then(movies => {
             $(loader).hide()
-            $(movieContainer).append(displayMovies(movies))
-            addClickEvents()
+            $(movieContainer).html(displayMovies(movies))
 
         })
         .catch(console.error);
@@ -104,13 +103,12 @@ const addMovie = movie => fetch(`${apiUrl}`, {
 })
     .then(response => response.json())
     .then(data => {
-       let newMovie = data[data.length - 1]
-        displayMovies(newMovie);
-        addClickEvents();
+        let newMovie = data[data.length - 1]
+        getMovies()
     })
     .catch(console.error);
 
-function createMovieObject(){
+function createMovieObject() {
     let $newTitle = $("#exampleFormControlInput1").val();
     let $newRating = $("#exampleFormControlSelect1").val();
     let newMovie = {
@@ -123,19 +121,15 @@ function createMovieObject(){
 
 // ======== click events
 
-function addClickEvents() {
-    $(".editBtn").click((e) => {
-        console.log('edited');
-    })
+$(".editBtn").click((e) => {
+    console.log('edited');
+})
 
-    $(".delBtn").click(function () {
-        let $target = $("");
+$(".delBtn").click(function () {
+    let $target = $("");
+})
 
-        // $target.remove();
-        // deleteMovie(movie.id);
-    });
-    $(".movieBtn").click(function(){
-        return createMovieObject();
-    })
-
-}
+$(".movieBtn").click(function (e) {
+    e.preventDefault()
+    return createMovieObject();
+})
