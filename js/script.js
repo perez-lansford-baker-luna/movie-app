@@ -34,7 +34,8 @@ const getMovies = () => {
         .then(movies => {
             $(loader).hide()
             $(movieContainer).append(displayMovies(movies))
-            addClickEvents();
+            addClickEvents()
+
         })
         .catch(console.error);
 }
@@ -103,13 +104,24 @@ const addMovie = movie => fetch(`${apiUrl}`, {
 })
     .then(response => response.json())
     .then(data => {
-        let $newTitle = $("#exampleFormControlInput1").val();
-        let $newRating = $("#exampleFormControlSelect1").val();
-        console.log($newTitle + $newRating);
-        console.log(`Success: ${JSON.stringify(data)}`);
-        return data.id;
+       let newMovie = data[data.length - 1]
+        displayMovies(newMovie);
+        addClickEvents();
     })
     .catch(console.error);
+
+function createMovieObject(){
+    let $newTitle = $("#exampleFormControlInput1").val();
+    let $newRating = $("#exampleFormControlSelect1").val();
+    let newMovie = {
+        title: $newTitle,
+        rating: $newRating,
+    }
+    return addMovie(newMovie)
+}
+
+
+// ======== click events
 
 function addClickEvents() {
     $(".editBtn").click((e) => {
@@ -118,8 +130,12 @@ function addClickEvents() {
 
     $(".delBtn").click(function () {
         let $target = $("");
-        console.log("removed");
+
         // $target.remove();
         // deleteMovie(movie.id);
     });
+    $(".movieBtn").click(function(){
+        return createMovieObject();
+    })
+
 }
