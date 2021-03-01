@@ -74,6 +74,12 @@ body{
     background: white;
 }
 
+form {
+    margin: 3px;
+    padding: 5px;
+    border: 2px solid darkblue;
+}
+
 /*.slider {*/
 /*    display: flex;*/
 /*}*/

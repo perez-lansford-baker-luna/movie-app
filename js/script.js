@@ -27,13 +27,13 @@ const loader = $(".loader");
                     <div class="card-body text-center">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">Rating: ${movie.rating}</p>
-                        <a href="#" class="btn btn-dark m-4">Edit</a>
-                        <a href="#" class="btn btn-dark m-4">Delete</a>
+                        <button id="editBtn" class="btn btn-dark m-4" type="button">Edit</button>
+                        <button id="delBtn" class="btn btn-dark m-4" type="button">Delete</button>
+<!--                        <a href="#" class="btn btn-dark m-4">Edit</a>-->
+<!--                        <a href="#" class="btn btn-dark m-4">Delete</a>-->
                     </div>
 				</div>`
 	}
-
-
 
 	function displayMovies(movies) {
 		return movies.reduce((acc, curr) => {
@@ -48,8 +48,9 @@ const loader = $(".loader");
         .then(response => response.json())
         .catch(console.error);
 
-    console.log(getMovie(1).then(data => console.log(data)));
+    // console.log(getMovie(1).then(data => console.log(data)));
     // console.log(getMovie(2));
+
 
 // ======= Delete Movies =======
 
@@ -61,29 +62,12 @@ const loader = $(".loader");
     })
         .then(response => response.json())
         .then(() => {
-
             console.log(`success: deleted movie of ${id}`)
         })
         .catch(console.error);
 
-// ======= Edit Movies =======
-    //
-    // const editMovie = movie => fetch(`${apiUrl}/${movie.title}`, {
-    //     method: "PUT",
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(movie)
-    // })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(`Edited ${JSON.stringify(data)}`)
-    //         return data[2].title;
-    //     })
-    //     .catch(console.error);
-    //
-    // console.log(editMovie(2));
 
+// ======= Edit Movie =======
     const editMovie = (movie, id) => fetch(`${apiUrl}/${id}`, {
         method: "PUT",
         headers: {
@@ -93,8 +77,15 @@ const loader = $(".loader");
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data + "something")
-            // return data[0];
+            let $newTitle = $("#movieNameInput").val();
+            let $newRating = $("#movieRatingInput").val();
+            let newData = {
+                title: $newTitle,
+                rating: $newRating
+            }
+            $(".card-body").empty();
+            console.log(data.id);
+
         })
         .catch(console.error);
 
@@ -113,9 +104,22 @@ const loader = $(".loader");
     })
         .then(response => response.json())
         .then(data => {
+            let $newTitle = $("#exampleFormControlInput1").val();
+            let $newRating = $("#exampleFormControlSelect1").val();
+            console.log($newTitle + $newRating);
             console.log(`Success: ${JSON.stringify(data)}`);
             return data.id;
         })
         .catch(console.error);
 
 
+    $("#editBtn").click(() => {
+        console.log("edited")
+    })
+
+    $("delBtn").click(function () {
+        let $target = $("");
+        console.log("removed");
+        // $target.remove();
+        // deleteMovie(movie.id);
+    });
