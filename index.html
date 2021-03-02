@@ -52,15 +52,16 @@
     </div>
 </nav>
 
+
+
 <!-- container for the movie display -->
 <div class="jumbotron jumbotron-fluid overflow-auto">
         <div id="movie-container" class="row"></div>
 </div>
 
-<!--div to contain nav tabs-->
-<div class="form-container nav nav-pills">
+<div class="form-container">
 <!-- adding movie form -->
-    <div class="d-none d-md-flex">
+    <div class="movie-form d-none d-md-flex">
         <form class="form">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Movie Name</label>
@@ -76,24 +77,20 @@
                     <option>5</option>
                 </select>
             </div>
-<!--            <div class="form-group">-->
-<!--                <label for="exampleFormControlTextarea1">Movie Description</label>-->
-<!--                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
-<!--            </div>-->
             <a href="#" class="btn btn-light m-4 movieBtn">ADD MOVIE</a>
         </form>
     </div>
 
 <!-- edit movie form -->
-    <div class=" d-none d-md-flex">
+    <div class="movie-form d-none d-md-flex">
         <form class="form">
             <div class="form-group">
-                <label for="movieNameInput">Movie Name</label>
-                <input type="text" class="form-control" id="movieNameInput">
+                <label for="editMovieTitle">Movie Title</label>
+                <input type="text" class="form-control" id="editMovieTitle">
             </div>
             <div class="form-group">
-                <label for="movieRatingInput">Rating</label>
-                <select class="form-control" id="movieRatingInput">
+                <label for="editMovieRating">Rating</label>
+                <select class="form-control" id="editMovieRating">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -101,11 +98,36 @@
                     <option>5</option>
                 </select>
             </div>
-            <a href="#" class="btn btn-light m-4" >EDIT MOVIE</a>
+            <a href="#" id="editButton" class="btn btn-light m-4 movieBtn">EDIT MOVIE</a>
         </form>
     </div>
 </div>
 
+
+
+<!-- edit modal popup -->
+<div class="modal">
+    <div class="modal-content show-modal">
+        <span class="close-button">&times;</span>
+        <button id="submitEdit" class="btn btn-light btn-sm">Submit</button>
+        <form id="editForm">
+            <div class="form-group">
+                <label for="editTitleInput">Movie Title</label>
+                <input type="text" class="titleInputBox" id="editTitleInput">
+            </div>
+            <div class="form-group">
+                <label for="editRatingInput">Rating</label>
+                <select class="ratingInputBox" id="editRatingInput">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

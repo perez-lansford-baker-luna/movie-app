@@ -74,12 +74,6 @@ body{
     background: white;
 }
 
-form {
-    margin: 3px;
-    padding: 5px;
-    border: 2px solid darkblue;
-}
-
 /*.slider {*/
 /*    display: flex;*/
 /*}*/
@@ -90,3 +84,54 @@ form {
 /*    height: 20em;*/
 /*}*/
 
+.movie-form {
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid lightgray;
+}
+
+.movieBtn {
+    border: 1px solid black;
+}
+
+/* modal style: "https://sabe.io/tutorials/how-to-create-modal-popup-box" */
+
+#submitEdit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border: 2px solid lightgray;
+    border-radius: 0.5rem;
+    visibility: hidden;
+
+}
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+
+.close-button:hover {
+    background-color: darkgray;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+}
