@@ -84,13 +84,23 @@ body{
 /*    height: 20em;*/
 /*}*/
 
+.movie-form {
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid lightgray;
+}
+
+.movieBtn {
+    border: 1px solid black;
+}
+
+/* modal style: "https://sabe.io/tutorials/how-to-create-modal-popup-box" */
+
 #submitEdit {
     position: absolute;
     right: 0;
     bottom: 0;
 }
-
-/* modal style: "https://sabe.io/tutorials/how-to-create-modal-popup-box" */
 
 .modal-content {
     position: absolute;

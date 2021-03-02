@@ -101,49 +101,37 @@ const editMovie = (movie, id) => fetch(`${apiUrl}/${id}`, {
 })
     .then(response => response.json())
     .then(data => {
-        let $modal = $(".modal-content");
-        let $editBtn = $("#editBtn")
-        let $newTitle = $("#movieNameInput").val();
-        let $newRating = $("#movieRatingInput").val();
-        let newData = {
-            title: $newTitle,
-            rating: $newRating
-        }
         // $(".card-body").empty();
+        // getMovies();
         console.log(data);
-
+        console.log(movie);
     })
     .catch(console.error);
 
-// console.log(editMovie({movie: 1,
-//     title: "something",
-//     rating: 5}));
 
-
-// modal variables
-let $closebtn = $(".close-button");
-const $modal = $(".modal");
-// modal popup functions
-function toggleModal() {
-    $modal.toggle("show-modal");
-}
-function windowOnClick(e) {
-    if (e.target === $modal) {
-        toggleModal();
-    }
-}
-// modal popup events
-$("#editBtn").click(toggleModal);
-$closebtn.click(toggleModal);
-window.addEventListener("click", windowOnClick);
+// // modal variables
+// let $closebtn = $(".close-button");
+// const $modal = $(".modal");
+// // modal popup functions
+// function toggleModal() {
+//     $modal.toggle("show-modal");
+// }
+// function windowOnClick(e) {
+//     if (e.target === $modal) {
+//         toggleModal();
+//     }
+// }
+// // modal popup events
+// $("#editBtn").click(toggleModal);
+// $closebtn.click(toggleModal);
+// window.addEventListener("click", windowOnClick);
 
 
 
 // ======== click events
 
-$("#submitEdit").click((e) => {
+$("#editButton").click((e) => {
     e.preventDefault()
-    editMovie();
     console.log('edited');
 })
 
