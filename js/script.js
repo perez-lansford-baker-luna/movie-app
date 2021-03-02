@@ -5,7 +5,6 @@ const apiUrl = "https://utopian-absorbing-network.glitch.me/movies";
 const movieContainer = $("#movie-container");
 const loader = $(".loader");
 
-
 // ======= Functions for Displaying Data =======
 
 function displayMovie(movie) {
@@ -13,13 +12,9 @@ function displayMovie(movie) {
                     <div class="card-body text-center">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">Rating: ${movie.rating}</p>
-                        <button class="editBtn btn btn-dark m-4" type="button">Edit</button>
+                        <button id="editBtn" class="btn btn-dark m-4" type="button" data-value="${movie.id}">Edit</button>
                         <button id="delBtn" class="delBtn btn btn-dark m-4" type="button" data-value="${movie.id}">Delete</button>
 <!--                        Added data value above so js knows what we are targeting-->
-
-
-<!--                        <a href="#" class="btn btn-dark m-4">Edit</a>-->
-<!--                        <a href="#" class="btn btn-dark m-4">Delete</a>-->
                     </div>
 				</div>`
 }
@@ -70,33 +65,6 @@ const deleteMovie = id => fetch(`${apiUrl}/${id}`, {
     .catch(console.error);
 
 
-// ======= Edit Movie =======
-const editMovie = (movie, id) => fetch(`${apiUrl}/${id}`, {
-    method: "PUT",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify(movie)
-})
-    .then(response => response.json())
-    .then(data => {
-        let $newTitle = $("#movieNameInput").val();
-        let $newRating = $("#movieRatingInput").val();
-        let newData = {
-            title: $newTitle,
-            rating: $newRating
-        }
-        $(".card-body").empty();
-        console.log(data.id);
-
-    })
-    .catch(console.error);
-
-// console.log(editMovie({movie: 1,
-//     title: "something",
-//     rating: 5}));
-
-
 // ======= Adding Movies =======
 const addMovie = movie => fetch(`${apiUrl}`, {
     method: 'POST',
@@ -123,9 +91,59 @@ function createMovieObject() {
 }
 
 
+// ======= Edit Movie =======
+const editMovie = (movie, id) => fetch(`${apiUrl}/${id}`, {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(movie)
+})
+    .then(response => response.json())
+    .then(data => {
+        let $modal = $(".modal-content");
+        let $editBtn = $("#editBtn")
+        let $newTitle = $("#movieNameInput").val();
+        let $newRating = $("#movieRatingInput").val();
+        let newData = {
+            title: $newTitle,
+            rating: $newRating
+        }
+        // $(".card-body").empty();
+        console.log(data);
+
+    })
+    .catch(console.error);
+
+// console.log(editMovie({movie: 1,
+//     title: "something",
+//     rating: 5}));
+
+
+// modal variables
+let $closebtn = $(".close-button");
+const $modal = $(".modal");
+// modal popup functions
+function toggleModal() {
+    $modal.toggle("show-modal");
+}
+function windowOnClick(e) {
+    if (e.target === $modal) {
+        toggleModal();
+    }
+}
+// modal popup events
+$("#editBtn").click(toggleModal);
+$closebtn.click(toggleModal);
+window.addEventListener("click", windowOnClick);
+
+
+
 // ======== click events
 
-$(".editBtn").click((e) => {
+$("#submitEdit").click((e) => {
+    e.preventDefault()
+    editMovie();
     console.log('edited');
 })
 
