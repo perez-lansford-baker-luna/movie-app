@@ -13,8 +13,11 @@ function displayMovie(movie) {
                     <div class="card-body text-center">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">Rating: ${movie.rating}</p>
-                        <button id="editBtn" class="editBtn btn btn-dark m-4" type="button">Edit</button>
-                        <button id="delBtn" class="delBtn btn btn-dark m-4" type="button">Delete</button>
+                        <button class="editBtn btn btn-dark m-4" type="button">Edit</button>
+                        <button id="delBtn" class="delBtn btn btn-dark m-4" type="button" data-value="${movie.id}">Delete</button>
+<!--                        Added data value above so js knows what we are targeting-->
+
+
 <!--                        <a href="#" class="btn btn-dark m-4">Edit</a>-->
 <!--                        <a href="#" class="btn btn-dark m-4">Delete</a>-->
                     </div>
@@ -32,9 +35,9 @@ const getMovies = () => {
     fetch(apiUrl)
         .then(response => response.json())
         .then(movies => {
-            $(loader).hide()
-            $(movieContainer).html(displayMovies(movies))
-
+            $(loader).hide();
+            $(movieContainer).html(displayMovies(movies));
+            addDeleteEvents();
         })
         .catch(console.error);
 }
@@ -43,7 +46,7 @@ getMovies();
 
 // 	======= Getting Movie Id =======
 
-const getMovie = id => fetch(`${apiUrl}/${id}`)
+const getMovie = title => fetch(`${apiUrl}/${title}`)
     .then(response => response.json())
     .catch(console.error);
 
@@ -62,6 +65,7 @@ const deleteMovie = id => fetch(`${apiUrl}/${id}`, {
     .then(response => response.json())
     .then(() => {
         console.log(`success: deleted movie of ${id}`)
+        getMovies();
     })
     .catch(console.error);
 
@@ -125,10 +129,18 @@ $(".editBtn").click((e) => {
     console.log('edited');
 })
 
-$(".delBtn").click(function () {
-    let $target = $("");
-})
+// Delete button
+function addDeleteEvents() {
+    $(".delBtn").click(function (e) {
+        e.preventDefault();
+        let id = $(this).attr('data-value');
+        console.log(id)
+        return deleteMovie(id)
+    })
+}
 
+
+// Add movie button
 $(".movieBtn").click(function (e) {
     e.preventDefault()
     return createMovieObject();
