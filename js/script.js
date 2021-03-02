@@ -12,8 +12,8 @@ function displayMovie(movie) {
                     <div class="card-body text-center">
                         <h5 class="card-title">${movie.title}</h5>
                         <p class="card-text">Rating: ${movie.rating}</p>
-                        <button id="editBtn" class="btn btn-dark m-4" type="button" data-value="${movie.id}">Edit</button>
-                        <button id="delBtn" class="delBtn btn btn-dark m-4" type="button" data-value="${movie.id}">Delete</button>
+                        <button class="btn btn-dark m-4" type="button" data-value="${movie.id}">Edit</button>
+                        <button class="delBtn btn btn-dark m-4" type="button" data-value="${movie.id}">Delete</button>
 <!--                        Added data value above so js knows what we are targeting-->
                     </div>
 				</div>`
@@ -74,8 +74,7 @@ const addMovie = movie => fetch(`${apiUrl}`, {
     body: JSON.stringify(movie)
 })
     .then(response => response.json())
-    .then(data => {
-        let newMovie = data[data.length - 1]
+    .then(() => {
         getMovies()
     })
     .catch(console.error);
